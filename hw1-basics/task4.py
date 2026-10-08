@@ -8,28 +8,47 @@
 
 
 def average_ctr(records: list[dict]) -> float:
-    """
-    records - список словарей вида
-    {"ad_id": str, "impressions": int, "clicks": int}.
+        """
+        records - список словарей вида
+        {"ad_id": str, "impressions": int, "clicks": int}.
 
-    Для каждой ЧИСТОЙ записи посчитать CTR = clicks / impressions и вернуть
-    среднее арифметическое CTR по всем чистым записям (не взвешенное по
-    показам).
+        Для каждой ЧИСТОЙ записи посчитать CTR = clicks / impressions и вернуть
+        среднее арифметическое CTR по всем чистым записям (не взвешенное по
+        показам).
 
-    Запись считается «грязной» и должна быть исключена из расчёта, если
-    выполняется хотя бы одно из условий:
-      - impressions <= 0;
-      - clicks < 0;
-      - clicks > impressions.
+        Запись считается «грязной» и должна быть исключена из расчёта, если
+        выполняется хотя бы одно из условий:
+        - impressions <= 0;
+        - clicks < 0;
+        - clicks > impressions.
 
-    Если чистых записей не осталось вообще, вернуть 0.0.
+        Если чистых записей не осталось вообще, вернуть 0.0.
 
-    Пример:
-        average_ctr([{"ad_id": "a", "impressions": 100, "clicks": 10}])
-        -> 0.1
-    """
-    # TODO: ваш код здесь
-    ...
+        Пример:
+            average_ctr([{"ad_id": "a", "impressions": 100, "clicks": 10}])
+            -> 0.1
+        """
+        # TODO: ваш код здесь
+        total_ctr = 0
+        count = 0
+        for id in records:
+            if id["impressions"] <= 0:
+                continue
+            else:
+                if id["clicks"] < 0:
+                    continue
+                else:
+                    if id["clicks"] > id["impressions"]:
+                        continue
+                    else:
+                        ctr = id["clicks"] / id["impressions"]
+                        total_ctr += ctr
+                        count += 1
+        if count == 0:
+            return 0.0
+        return total_ctr / count
+
+
 
 
 if __name__ == "__main__":

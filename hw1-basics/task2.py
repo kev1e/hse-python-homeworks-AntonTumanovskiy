@@ -22,9 +22,25 @@ def filter_events_after(log_lines: list[str], user: str, after_time: str) -> lis
     Пример:
         filter_events_after(["10:00 alice login", "14:30 alice click"], "alice", "12:00")
         -> ["14:30 alice click"]
+
+        19:00 MKTBOT7
     """
+
+    
     # TODO: ваш код здесь
-    ...
+    result = []
+    for i in range(0, len(log_lines)):
+        a = log_lines[i].split(" ")
+        a[0].split(":")
+        
+        if int(a[0].split(":")[0]) > int(after_time.split(":")[0]) and a[1] == user:
+            result.append(log_lines[i])
+        elif int(a[0].split(":")[0]) == int(after_time.split(":")[0]) and a[1] == user:
+            if int(a[0].split(":")[1]) > int(after_time.split(":")[1]):
+                result.append(log_lines[i])
+            else:
+                continue
+    return result
 
 
 if __name__ == "__main__":

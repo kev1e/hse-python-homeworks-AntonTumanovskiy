@@ -18,8 +18,19 @@ def decode_caesar_cipher(text: str, shift: int) -> str:
 
     Пример: decode_caesar_cipher("Khoor!", 3) -> "Hello!"
     """
-    # TODO: ваш код здесь
-    ...
+    result = ''
+    alphabet_s = list('abcdefghijklmnopqrstuvwxyz')
+    alphabet_b = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    for i in range(0, len(text)):
+        if text[i] in alphabet_s:
+            a = (alphabet_s.index(text[i]) - shift) % 26
+            result += alphabet_s[a]
+        elif text[i] in alphabet_b:
+            a = (alphabet_b.index(text[i]) - shift) % 26
+            result += alphabet_b[a]
+        else:
+            result += text[i]
+    return result
 
 
 if __name__ == "__main__":

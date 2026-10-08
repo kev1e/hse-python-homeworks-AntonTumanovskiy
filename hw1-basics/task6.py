@@ -26,7 +26,28 @@ def decode_vigenere_cipher(text: str, key: str) -> str:
     Пример: decode_vigenere_cipher("Rijvs, Uyvjn!", "key") -> "Hello, World!"
     """
     # TODO: ваш код здесь
-    ...
+    result = ''
+    alphabet_s = list('abcdefghijklmnopqrstuvwxyz')
+    alphabet_b = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+
+    key = key.lower()
+    key_index = 0
+
+    for i in range(len(text)):
+        if text[i] in alphabet_s:
+            shift = alphabet_s.index(key[key_index % len(key)])
+            a = (alphabet_s.index(text[i]) - shift) % 26
+            result += alphabet_s[a]
+            key_index += 1
+
+        elif text[i] in alphabet_b:
+            shift = alphabet_s.index(key[key_index % len(key)])
+            a = (alphabet_b.index(text[i]) - shift) % 26
+            result += alphabet_b[a]
+            key_index += 1
+        else:
+            result += text[i]
+    return result
 
 
 if __name__ == "__main__":

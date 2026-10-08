@@ -24,8 +24,13 @@ def analyze_activity(user_ids: list[str]) -> tuple[dict[str, int], int, str]:
         analyze_activity(["a", "b", "a"]) -> ({"a": 2, "b": 1}, 2, "a")
     """
     # TODO: ваш код здесь
-    ...
-
+    result = {}
+    for i in range(0, len(user_ids)):
+        if user_ids[i] not in result:
+            result[user_ids[i]] = 1
+        else:
+            result[user_ids[i]] += 1
+    return result, len(result), max(result, key=result.get)
 
 if __name__ == "__main__":
     # Готовый код запуска - менять не нужно.
